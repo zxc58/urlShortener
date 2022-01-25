@@ -1,7 +1,6 @@
 [
-    { "shortUrl": "00000", "originalUrl": "http://www.google.com" },
-    { "shortUrl": "00001", "originalUrl": "https://www.youtube.com" },
-    { "shortUrl": "00002", "originalUrl": "https://www.facebook.com" },
-    { "shortUrl": "00003", "originalUrl": "https://github.com" },
-    { "shortUrl": "00004", "originalUrl": "https://www.w3schools.com/charsets/ref_utf_arrows.asp" }
+    { "shortUrl": "00000", "originalUrl": "https://www.google.com.tw/" },
+    { "shortUrl": "00001", "originalUrl": "https://www.youtube.com/" },
+    { "shortUrl": "00002", "originalUrl": "https://www.facebook.com/" },
+    { "shortUrl": "00003", "originalUrl": "https://github.com/" }
 ]
