@@ -8,4 +8,4 @@ const schema= new mongoose.Schema({
 });
 
 //
-module.exports= mongoose.model("url", schema);
+module.exports= mongoose.model("Url", schema);

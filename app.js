@@ -10,7 +10,8 @@ const port= 3000;
 app.engine("handlebars",expressHandlebars.engine());
 app.set("view engine","handlebars");
 app.set("views","./views");
-app.use("/",indexRouter);
+app.use(express.urlencoded({extended:true}));
+app.use(indexRouter);
 //
 app.listen(port,()=>{
     console.log(`server start at http://localhost:${port}`)
