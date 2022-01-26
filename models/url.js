@@ -1,11 +1,11 @@
-//require modules
+// require modules
 const mongoose = require('mongoose')
 
-//set schema
+// set schema
 const schema = new mongoose.Schema({
   shortUrl: { type: String, required: true },
   originalUrl: { type: String, required: true }
 })
 
-//exports
+// exports
 module.exports = mongoose.model('Url', schema)

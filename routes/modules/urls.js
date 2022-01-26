@@ -1,29 +1,29 @@
-//require modules set const
+// require modules set const
 const express = require('express')
 const router = express.Router()
 const Url = require('../../models/url')
-const randomString = require('../../myFunction')
+const myFunc = require('../../myFunction')
 
-//set route
+// set route
 router.post('/', (req, res) => {
-  try { new URL(req.body.originalUrl) } catch (e) { console.log('url在後端認證錯誤') }
-  
-  Url.findOne({ originalUrl: req.body.originalUrl }).lean().then(result => {
-    if (!result) {
-      const string = randomString(5)
-      const y = { originalUrl: req.body.originalUrl, shortUrl: string }
-      Url.create(y).then(() => {
-        res.render('index', { result: y })
+  let testURL = true
+  try { new URL(req.body.originalUrl) } catch (e) { console.log('url在後端認證錯誤'); testURL = !testURL; res.status(500).send('url在後端認證錯誤') }
+  if (testURL) {
+    Url.findOne({ originalUrl: req.body.originalUrl }).lean().then(result => {
+      if (!result) {
+        new Promise((resolve, reject) => {
+          myFunc.shortUrlCreate(req.body.originalUrl, resolve, reject, 10000)
+        }).then(result => res.render('index', { result }), result => res.status(500).send(result))
+      } else {
+        res.render('index', { result })
+      }
+    })
+      .catch(err => {
+        console.log(err)
+        res.status(500).send('server error ,please try again')
       })
-    } else {
-      res.render('index', { result })
-    }
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).send('server error ,please try again')
-  })
+  }
 })
 
-//exports
+// exports
 module.exports = router
