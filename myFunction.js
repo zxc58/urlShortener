@@ -1,4 +1,4 @@
-//
+//random function
 module.exports = number => {
   const string = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
   const length = string.length

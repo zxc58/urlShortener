@@ -1,10 +1,9 @@
-//
+//require modules set const
 const express = require('express')
 const router = express.Router()
 const Url = require('../../models/url')
-//
-//
 
+//set route
 router.get(/^\/[\w]{5}$/, (req, res) => {
   const x = req.path.substring(1)
   Url.findOne({ shortUrl: x }).then(result => {
@@ -18,6 +17,6 @@ router.get(/^\/[\w]{5}$/, (req, res) => {
 router.get(/^\/$/, (req, res) => {
   res.render('index')
 })
-//
-//
+
+//exports
 module.exports = router
