@@ -3,7 +3,7 @@ const express = require('express')
 const router = express.Router()
 const Url = require('../../models/url')
 const myFunc = require('../../myFunction')
-
+const logger = require('../../logger/logger')
 // set route
 router.post('/', (req, res) => {
   let testURL = true
@@ -13,13 +13,13 @@ router.post('/', (req, res) => {
       if (!result) {
         new Promise((resolve, reject) => {
           myFunc.shortUrlCreate(req.body.originalUrl, resolve, reject, 10000)
-        }).then(result => res.render('index', { result }), result => res.status(500).send(result))
+        }).then(result => res.render('index', { result, host:req.hostname }), result => res.status(500).send(result))
       } else {
         res.render('index', { result, host:req.hostname })
       }
     })
       .catch(err => {
-        console.log(err)
+        logger.error(err)
         res.status(500).send('server error ,please try again')
       })
   }
