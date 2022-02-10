@@ -13,8 +13,9 @@ router.post('/', (req, res) => {
       if (!result) {
         new Promise((resolve, reject) => {
           myFunc.shortUrlCreate(req.body.originalUrl, resolve, reject, 10000)
-        }).then(result => res.render('index', { result }), result => res.status(500).send(result))
+        }).then(result => res.render('index', { result, host:req.hostname }), result => res.status(500).send(result))
       } else {
+        console.log(req.hostname)
         res.render('index', { result, host:req.hostname })
       }
     })
