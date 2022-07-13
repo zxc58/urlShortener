@@ -4,8 +4,15 @@ const db = require('../../config/mongoose')
 const urlSeed = require('../../urlSeed.json')
 
 // seeding
-db.once('open', () => {
-  Url.create(urlSeed).then(() => console.log('success seed'))
-    .catch(err => console.log(err))
-    .finally(() => process.exit())
+db.once('open', async () => {
+  try{
+    await Url.remove({})
+    await Url.create(urlSeed)
+    console.log('success seed')
+  }catch(error){
+    console.log(error)
+  }
+  finally{
+    process.exit()
+  }
 })

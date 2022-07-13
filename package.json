@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "prestart": "node models/seeds/urlSeeder.js",
     "start": "node app.js",
     "dev": "nodemon app.js",
     "seed": "node models/seeds/urlSeeder.js",
