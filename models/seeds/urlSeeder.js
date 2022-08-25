@@ -2,17 +2,16 @@
 const Url = require('../url')
 const db = require('../../config/mongoose')
 const urlSeed = require('../../urlSeed.json')
-const logger = require('../../logger/logger')
+const logger = require('../../logger')
 // seeding
 db.once('open', async () => {
-  try{
+  try {
     await Url.deleteMany({})
     await Url.create(urlSeed)
     logger.info('success seed')
-  }catch(error){
+  } catch (error) {
     logger.error(error)
-  }
-  finally{
+  } finally {
     process.exit()
   }
 })

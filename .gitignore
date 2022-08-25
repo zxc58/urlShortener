@@ -1,4 +1,3 @@
 node_modules/
-.gitignore
 logger/history/*.log
 .env
